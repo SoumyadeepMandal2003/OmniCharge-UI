@@ -20,7 +20,7 @@
 
 <br/>
 
-[![Live App](https://img.shields.io/badge/🌐%20Live%20App-4.186.25.145:4200-10b981?style=for-the-badge)](http://4.186.25.145:4200)
+[![Live App](https://img.shields.io/badge/🌐%20Local%20App-localhost:4200-10b981?style=for-the-badge)](http://localhost:4200)
 [![Backend API](https://img.shields.io/badge/🔗%20Backend%20API-OmniCharge-6366f1?style=for-the-badge)](https://github.com/SoumyadeepMandal2003/OmniCharge)
 
 </div>
@@ -247,8 +247,8 @@ OmniCharge-UI/
 │   │   ├── layout/    ...
 │   │   └── shared/    ...
 │   ├── environments/
-│   │   ├── environment.ts            # dev: http://4.186.25.145:8080
-│   │   └── environment.prod.ts       # prod: http://4.186.25.145:8080
+│   │   ├── environment.ts            # dev: http://localhost:8080
+│   │   └── environment.prod.ts       # prod: http://localhost:8080
 │   ├── index.html                    # Inter font + data-theme="dark"
 │   ├── main.ts                       # bootstrapApplication
 │   └── styles.css                    # Full glassmorphic design system
@@ -285,7 +285,7 @@ npm start
 
 Open **[http://localhost:4200](http://localhost:4200)**
 
-> Make sure the [OmniCharge backend](https://github.com/SoumyadeepMandal2003/OmniCharge) is running at `http://4.186.25.145:8080` or update `src/environments/environment.ts` to point to your local backend.
+> Make sure the [OmniCharge backend](https://github.com/SoumyadeepMandal2003/OmniCharge) is running at `http://localhost:8080` or update `src/environments/environment.ts` to point to your backend.
 
 ### Build for Production
 
@@ -315,7 +315,7 @@ Edit `src/environments/environment.prod.ts` for production builds:
 ```typescript
 export const environment = {
   production: true,
-  apiUrl: 'http://4.186.25.145:8080'
+  apiUrl: 'http://localhost:8080'
 };
 ```
 
