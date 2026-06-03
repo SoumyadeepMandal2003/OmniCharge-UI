@@ -13,6 +13,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
+  // Skip auth header for ALL auth endpoints (login, register, logout, refresh, validate)
   const isAuthEndpoint = req.url.includes('/api/auth/');
   const token = authService.getAccessToken();
 
@@ -22,7 +23,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError((err: HttpErrorResponse) => {
-      // On 401, try to refresh the token before giving up
+      // Only attempt refresh for 401s on non-auth, non-logout endpoints
       if (err.status === 401 && !isAuthEndpoint) {
         return handle401(req, next, authService, router);
       }
@@ -45,6 +46,7 @@ function handle401(
 
   // No refresh token available — force login
   if (!refreshToken) {
+    isRefreshing = false;
     authService.clearSession();
     router.navigate(['/auth/login']);
     return throwError(() => new Error('Session expired. Please log in again.'));
@@ -58,12 +60,11 @@ function handle401(
       switchMap((res) => {
         isRefreshing = false;
         refreshTokenSubject.next(res.accessToken);
-        // Retry the original request with the new token
         return next(addToken(req, res.accessToken));
       }),
       catchError((refreshErr) => {
-        // Refresh token also expired or invalid — force login
         isRefreshing = false;
+        refreshTokenSubject.next(null);
         authService.clearSession();
         router.navigate(['/auth/login']);
         return throwError(() => refreshErr);

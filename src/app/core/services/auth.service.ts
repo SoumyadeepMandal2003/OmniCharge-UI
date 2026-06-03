@@ -49,11 +49,15 @@ export class AuthService {
 
   logout(): void {
     const refreshToken = this.getRefreshToken();
+    // Clear session immediately so guards redirect correctly
+    this.clearSession();
+    // Use location.href for a hard redirect — guarantees clean state
+    // regardless of any pending HTTP requests or router state
+    window.location.href = '/auth/login';
+    // Fire server-side revoke best-effort after redirect is initiated
     if (refreshToken) {
       this.http.post(`${this.BASE}/logout`, { refreshToken }).subscribe({ error: () => {} });
     }
-    this.clearSession();
-    this.router.navigate(['/auth/login']);
   }
 
   logoutAll(): Observable<void> {

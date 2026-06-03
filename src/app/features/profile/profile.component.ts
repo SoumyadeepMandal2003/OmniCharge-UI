@@ -90,19 +90,19 @@ import { SpinnerComponent } from '../../shared/components/spinner/spinner.compon
           </form>
         </div>
 
-        <!-- Danger Zone -->
+        <!-- Logout Section -->
         <div class="card" style="border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.05);">
-          <h3 style="font-size:15px;font-weight:700;color:#ef4444;margin-bottom:8px;">⚠️ Session Management</h3>
+          <h3 style="font-size:15px;font-weight:700;color:#ef4444;margin-bottom:8px;">🚪 Sign Out</h3>
           <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;line-height:1.6;">
-            Sign out from all devices. This revokes all active sessions and tokens.
+            Sign out of your account on this device.
           </p>
-          <button class="btn-danger btn-sm" (click)="onLogoutAll()" [disabled]="loggingOut()">
+          <button class="btn-danger btn-sm" (click)="onLogout()" [disabled]="loggingOut()">
             @if (loggingOut()) {
               <span style="display:inline-flex;align-items:center;gap:6px;">
                 <span class="spinner-gradient sm animate-spin"></span> Signing out...
               </span>
             } @else {
-              🚪 Sign Out All Devices
+              Sign Out
             }
           </button>
         </div>
@@ -154,11 +154,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onLogoutAll(): void {
+  onLogout(): void {
     this.loggingOut.set(true);
-    this.authService.logoutAll().subscribe({
-      next: () => this.toast.success('Signed out from all devices'),
-      error: () => { this.loggingOut.set(false); this.toast.error('Failed to sign out'); }
-    });
+    this.authService.logout();
   }
 }

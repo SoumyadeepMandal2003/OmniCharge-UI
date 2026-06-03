@@ -22,41 +22,43 @@ import { SpinnerComponent } from '../../../shared/components/spinner/spinner.com
 
       <!-- Success Screen -->
       @if (success()) {
-        <div class="glass-card animate-slide-up" style="text-align:center;padding:40px 32px;">
-          <div style="font-size:56px;margin-bottom:16px;">🎉</div>
+        <div class="card animate-slide-up" style="text-align:center;padding:40px 32px;">
+          <!-- Green checkmark circle -->
+          <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#10b981,#34d399);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 32px rgba(16,185,129,0.4);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
           <h2 style="font-size:22px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Recharge Successful!</h2>
-          <p style="color:var(--text-secondary);margin-bottom:28px;">Your mobile has been recharged successfully.</p>
+          <p style="color:var(--text-secondary);margin-bottom:28px;font-size:14px;">Your recharge has been processed successfully.</p>
 
-          <div style="background:rgba(0,0,0,0.2);border:1px solid var(--glass-border);border-radius:12px;padding:20px;margin-bottom:28px;text-align:left;">
-            <div style="display:grid;gap:10px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="color:var(--text-secondary);font-size:13px;">Recharge ID</span>
-                <span style="font-family:monospace;font-size:12px;color:var(--text-primary);">{{ result()?.rechargeId }}</span>
-              </div>
-              <div style="height:1px;background:var(--glass-border);"></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="color:var(--text-secondary);font-size:13px;">Mobile Number</span>
-                <span style="font-weight:600;color:var(--text-primary);">{{ result()?.mobileNumber }}</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="color:var(--text-secondary);font-size:13px;">Operator</span>
-                <span style="color:var(--text-primary);">{{ result()?.operatorName }}</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="color:var(--text-secondary);font-size:13px;">Plan</span>
-                <span style="color:var(--text-primary);">{{ result()?.planName }}</span>
-              </div>
-              <div style="height:1px;background:var(--glass-border);"></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="color:var(--text-secondary);font-size:14px;font-weight:600;">Amount Paid</span>
-                <span style="font-size:20px;font-weight:800;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹{{ result()?.amount }}</span>
-              </div>
+          <!-- Receipt Card -->
+          <div style="border:1px solid var(--glass-border);border-radius:12px;overflow:hidden;margin-bottom:28px;text-align:left;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--glass-border);">
+              <span style="color:var(--text-secondary);font-size:13px;">Recharge ID</span>
+              <span style="font-family:monospace;font-size:12px;color:var(--text-primary);">{{ result()?.rechargeId }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--glass-border);">
+              <span style="color:var(--text-secondary);font-size:13px;">Mobile</span>
+              <span style="font-weight:600;color:var(--text-primary);">{{ result()?.mobileNumber }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--glass-border);">
+              <span style="color:var(--text-secondary);font-size:13px;">Operator</span>
+              <span style="color:var(--text-primary);">{{ result()?.operatorName }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--glass-border);">
+              <span style="color:var(--text-secondary);font-size:13px;">Plan</span>
+              <span style="color:var(--text-primary);">{{ result()?.planName }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(99,102,241,0.05);">
+              <span style="color:var(--text-primary);font-size:14px;font-weight:700;">Total Paid</span>
+              <span style="font-size:18px;font-weight:800;color:#a78bfa;">₹{{ result()?.amount }}</span>
             </div>
           </div>
 
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <button class="btn-secondary" (click)="resetForm()">⚡ New Recharge</button>
-            <a routerLink="/recharge/history" class="btn-primary">📋 View History</a>
+            <button class="btn-secondary" (click)="resetForm()">New Recharge</button>
+            <a routerLink="/recharge/history" class="btn-primary">View History</a>
           </div>
         </div>
 

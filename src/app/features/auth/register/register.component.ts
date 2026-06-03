@@ -15,8 +15,8 @@ import { ToastService } from '../../../core/services/toast.service';
 
         <!-- Brand -->
         <div style="text-align:center;margin-bottom:28px;">
-          <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;">
-            ⚡
+          <div style="width:52px;height:52px;border-radius:14px;background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.15);margin:0 auto 14px;">
+            <img src="mobile-app.png" alt="OmniCharge" class="brand-logo-img" style="width:36px;height:36px;object-fit:contain;border-radius:6px;"/>
           </div>
           <h1 style="font-size:26px;font-weight:800;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;">
             OmniCharge
